@@ -1,0 +1,51 @@
+{# parent class to store common webpage functionality + display e.g. header format #}
+{# other template pages can inherit from this and just add what is unique in named "blocks"#}
+
+    {#Can inject "python" into django templates to dynamically populate webages, not static#}
+    {%comment%} Differences in syntax:
+
+        {% %} : logic, e.g. {%if title == "hello world"%}  
+        {{}}  : variable, e.g. {{post.title}}, will be injected into html
+        {# #} : single line comment
+       
+        {%if ...%} -> {%endif%}  : if statement
+        {for ...}  -> {%endfor%} : for loop
+
+
+
+        list.0       : first item in a list
+        {post.title} : item in dictionary with key "title"
+        
+    {%endcomment%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    {#gets first item in 'posts' list, check if that dictionary has title item#}
+    {%if posts.0.title%}
+        <title>Niall's Blog - {{posts.0.title}}</title>
+    {%else%}
+        <title>Niall's Blog</title>
+    {%endif%}
+</head>
+<body>
+    <!-- create div, give Bootstrap class "container". Gives content good spacing-->
+    <div class="container">
+        {# named "block" which can be later filled in #}
+        {% block content%} {%endblock content%}
+    </div>
+
+    <!-- Bootstrap scripts: Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

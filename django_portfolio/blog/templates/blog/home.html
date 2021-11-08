@@ -1,0 +1,15 @@
+{% extends "blog/base.html"%}
+{# iterates through each item in posts data, creates html code to display#}
+{# creating "content" block to be injected into base.html to display unique home page content #}
+{% load static %}
+
+{% block content %}
+    {% for post in posts %}
+        <h1>{{post.title}}</h1>
+        <p> By {{ post.author}} on {{post.date_posted }} </p>
+        <p> {{post.content}} </p>
+    {% endfor %}
+    <canvas id="canvas"></canvas>
+    <script src="{% static 'blog/canvas.js' %}"></script>
+
+{% endblock content %}
