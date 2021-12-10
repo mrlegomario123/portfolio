@@ -5,7 +5,10 @@ import sys
 
 
 def main():
-    """Run administrative tasks."""
+    """ Run administrative tasks.
+    :param text (string) doesnt actualy lol
+    :return: (list) fooled you again
+    """
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_portfolio.settings')
     try:
         from django.core.management import execute_from_command_line
